@@ -1,0 +1,116 @@
+# 01 - Jenkins Freestyle CI
+
+## Real-World Scenario
+
+A development team maintains application source code in GitHub.
+The DevOps team needs Jenkins to retrieve the latest source code
+from the repository and verify that Jenkins can successfully
+connect to GitHub and check out the required branch.
+
+## Objective
+
+Build the first Jenkins CI workflow using a Freestyle project.
+
+The workflow should:
+
+1. Connect Jenkins to GitHub using SSH.
+2. Retrieve the source code from the `main` branch.
+3. Check out the latest Git revision.
+4. Store the source code in the Jenkins workspace.
+5. Complete the Jenkins build successfully.
+
+## Architecture
+
+```text
+Developer
+    |
+    | git push
+    v
+ GitHub
+    |
+    | SSH
+    v
+ Jenkins
+    |
+    | Git Checkout
+    v
+Jenkins Workspace
+    |
+    v
+Build #1 - SUCCESS
+
+Jenkins Configuration
+Job
+
+CI-Freestyle-Learning
+
+Project Type
+     |
+Freestyle Project
+     |
+Source Code Management
+     |
+    Git
+     |
+ Repository
+     |
+jenkins-ci-learning
+     |
+   Branch
+     |
+    main
+
+## Authentication
+
+SSH credential configured in Jenkins.
+       |
+Credential ID:github-ssh
+       |
+Git Host Verification
+       |
+Accept first connection
+
+## Result
+
+Jenkins successfully connected to GitHub, checked out the
+main branch, and completed Build #1 successfully.
+
+## Key Concepts Learned
+
+Jenkins Job
+Freestyle Project
+Source Code Management (SCM)
+Git Repository
+Git Branch
+SSH Credentials
+Git Checkout
+Git Revision
+Jenkins Workspace
+Build Number
+Console Output
+
+## Important Observation
+
+At this stage Jenkins is only retrieving the source code.
+An actual application build or test has not yet been configured.
+
+The next step is to add a Jenkins build action and execute a
+command against the checked-out source code.
+
+
+### Commit it
+
+Use this commit message:
+
+```text
+docs: document freestyle github ci
+
+jenkins-ci-learning/
+│
+├── README.md
+│
+└── 01-freestyle/
+    └── README.md
+
+
+
