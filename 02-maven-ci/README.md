@@ -80,6 +80,38 @@ If the application compiles successfully and all tests pass, Jenkins marks the b
 
 
 
+## Jenkins Pipeline CI
+
+A Jenkins Pipeline was created to automate the Spring Boot Maven CI process using a declarative Jenkinsfile.
+
+### Pipeline Stages
+
+1. **Checkout** – Jenkins retrieves the source code from GitHub using SSH credentials.
+2. **Build** – Maven cleans the previous build artifacts using `mvn clean`.
+3. **Test** – Maven executes the JUnit tests using `mvn test`.
+4. **Check Allure Results** – Jenkins verifies that Allure test-result files were generated under `target/allure-results`.
+5. **Allure Report** – Jenkins generates and publishes the Allure HTML test report.
+
+### Jenkins Tools
+
+* JDK: 21
+* Maven: 3.9.16
+* Source Control: GitHub
+* CI Tool: Jenkins
+* Test Framework: JUnit 5
+* Test Reporting: Allure
+
+### CI Flow
+
+GitHub → Jenkins Checkout → Maven Clean → Maven Test → Allure Results → Allure Report
+
+### Result
+
+The Pipeline completed successfully and generated the Allure report in Jenkins.
+
+### Key Learning
+
+The Jenkins Pipeline acts as the automation layer that connects source-code checkout, Maven build execution, automated testing, and Allure reporting into a single repeatable CI workflow.
 
 
 
