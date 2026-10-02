@@ -358,6 +358,6 @@ This allows developers to validate their changes independently before merging th
 
 ---
 
-## Key Learning
+## Branch Demonstration
 
-The major concept learned in this exercise is:
+This section is maintained on the `feature/jenkins-multibranch` branch to demonstrate how Jenkins Multibranch Pipeline detects and builds changes independently for each Git branch.
