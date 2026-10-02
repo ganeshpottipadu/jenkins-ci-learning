@@ -361,3 +361,71 @@ This allows developers to validate their changes independently before merging th
 ## Branch Demonstration
 
 This section is maintained on the `feature/jenkins-multibranch` branch to demonstrate how Jenkins Multibranch Pipeline detects and builds changes independently for each Git branch.
+
+
+
+## Change Detection Experiment
+
+To verify that Jenkins Multibranch Pipeline detects changes independently for each branch, a documentation change was made directly to the `feature/jenkins-multibranch` branch in GitHub.
+
+### Steps Performed
+
+1. Updated `03-multibranch/README.md` in the `feature/jenkins-multibranch` branch.
+2. Committed the change directly to GitHub.
+3. Opened Jenkins → `CI-Multibranch-SpringBoot`.
+4. Selected **Scan Multibranch Pipeline Now**.
+5. Jenkins scanned both `main` and `feature/jenkins-multibranch`.
+
+### Jenkins Scan Result
+
+Jenkins detected a new commit on the feature branch:
+
+```text
+Changes detected: feature/jenkins-multibranch
+Scheduled build for branch: feature/jenkins-multibranch
+```
+
+The `main` branch was not rebuilt because Jenkins reported:
+
+```text
+No changes detected: main
+```
+
+The feature branch automatically triggered a new build.
+
+### Result
+
+`feature/jenkins-multibranch` Build #2 completed successfully.
+
+This demonstrated that Jenkins Multibranch Pipeline:
+
+* Detects changes independently for each branch.
+* Identifies the branch containing the new commit.
+* Automatically schedules a build for the changed branch.
+* Does not trigger an unnecessary build for unchanged branches.
+* Uses the `Jenkinsfile` from the respective branch to execute the Pipeline.
+
+### Real-World CI Flow
+
+```text
+Developer pushes change
+        ↓
+GitHub feature branch updated
+        ↓
+Jenkins scans repository
+        ↓
+New commit detected
+        ↓
+Changed branch identified
+        ↓
+Branch-specific Pipeline triggered
+        ↓
+Build + Test + Allure Report
+        ↓
+Build SUCCESS
+```
+
+### Key Learning
+
+Multibranch Pipeline allows Jenkins to manage CI independently for multiple branches in the same GitHub repository. Each branch can have its own Pipeline execution and build history while using the `Jenkinsfile` stored in that branch.
+
