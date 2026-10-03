@@ -429,3 +429,48 @@ Build SUCCESS
 
 Multibranch Pipeline allows Jenkins to manage CI independently for multiple branches in the same GitHub repository. Each branch can have its own Pipeline execution and build history while using the `Jenkinsfile` stored in that branch.
 
+## Pull Request Merge Validation
+
+After validating the Multibranch Pipeline and change detection, a Pull Request was created from:
+
+`feature/jenkins-multibranch` → `main`
+
+The Pull Request was successfully reviewed and merged into the `main` branch.
+
+### Jenkins Validation After Merge
+
+After the merge, the Multibranch Pipeline was scanned again.
+
+Jenkins detected changes in both branches:
+
+- `feature/jenkins-multibranch` — Change detected and Build #4 scheduled.
+- `main` — Change detected because the Pull Request merge created a new commit on the `main` branch, and Build #2 was scheduled.
+
+
+### Main Branch Build Validation
+
+The `main` branch Build #2 completed successfully.
+
+The Jenkins Changes section confirmed that the commits introduced through the Pull Request were included in the build:
+
+- `abac8d5` — `docs: document multibranch pipeline`
+- `f19ea20` — `docs: demonstrate multibranch branch change`
+- `06b93d5` — `docs: document multibranch change detection`
+
+The build also generated the Allure test report successfully.
+
+### Result
+
+This experiment demonstrated that:
+
+- A merged Pull Request creates a new revision on the `main` branch.
+- Jenkins Multibranch Pipeline detects the updated `main` branch.
+- Jenkins schedules a new build for the changed branch.
+- The Jenkins Changes section can be used to verify the commits included in a build.
+- The merged code was successfully built and tested.
+- Allure reporting completed successfully.
+
+
+
+
+
