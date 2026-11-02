@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Run Python Script') {
+            steps {
+                bat '"C:\\Users\\ganes\\AppData\\Local\\Python\\bin\\python.exe" "%WORKSPACE%\\04-python-ci\\python-jenkins.py"'
+            }
+        }
+    }
+}
